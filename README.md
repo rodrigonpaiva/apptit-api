@@ -1,6 +1,11 @@
 
 <p align="center">
-  <a href="https://apptit.io" target="blank"><img src="https://jumpshare.com/s/4DZdv2UPYQS55CvSmXAA" width="120" alt="Apptit Logo" /></a>
+  <a href="https://apptit.io" target="blank">
+    <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+      <iframe id="js_video_iframe" src="https://jumpshare.com/embed/4DZdv2UPYQS55CvSmXAA" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 120%;">
+      </iframe>
+    </div>
+  </a>
 </p>
 
 <p align="center">
