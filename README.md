@@ -1,9 +1,7 @@
 
 <p align="center">
   <a href="https://apptit.io" target="blank">
-<iframe id="js_video_iframe" src="https://jumpshare.com/embed/4DZdv2UPYQS55CvSmXAA" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 120px;"></iframe>
-  
-  </a>
+  <img style="max-width:120px;" src="https://previews.jumpshare.com/thumb/815bc01b796dd6f1733c957c5af19493367bedb244b33f008931a474dfac8d6f3e95bb639217e699707b7a59331f1a0080605dcab6e7ccad1e304e8a018401bb6128b5c7b8d34796378b19d348fbc76f"></a>
 </p>
 
 <p align="center">
