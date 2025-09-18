@@ -36,9 +36,8 @@ Key modules implemented so far:
 
 ```bash
 $ npm install
-```
 
----
+```
 
 ## 🚀 Compile and run the project
 
@@ -53,8 +52,6 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
----
-
 ## 🧪 Run tests
 
 ```bash
@@ -67,8 +64,6 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
----
 
 ## 📡 Endpoints implemented
 
@@ -145,8 +140,6 @@ Response:
 - Fields: tenantId, kitchenId, productId, qty, lot, expiresAt
 - Composite unique: (tenantId, barcode)
 
----
-
 ## 🚀 Deployment
 
 When deploying the Apptit API to production:
@@ -155,21 +148,16 @@ When deploying the Apptit API to production:
 - Use environment variables for DB connection and OFF integration
 - Run with a process manager (PM2, Docker, Kubernetes)
 
----
-
 ## 📚 Resources
 
 - NestJS Documentation
 - Prisma Documentation
 - Open Food Facts API
 
----
 
 👤 Author
 
 - Rodrigo Paiva – GitHub · LinkedIn
-
----
 
 📄 License
 
