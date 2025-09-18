@@ -1,10 +1,8 @@
 
 <p align="center">
   <a href="https://apptit.io" target="blank">
-    <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-      <iframe id="js_video_iframe" src="https://jumpshare.com/embed/4DZdv2UPYQS55CvSmXAA" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 120%;">
-      </iframe>
-    </div>
+<iframe id="js_video_iframe" src="https://jumpshare.com/embed/4DZdv2UPYQS55CvSmXAA" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 120px;"></iframe>
+  
   </a>
 </p>
 
