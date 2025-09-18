@@ -38,7 +38,7 @@ Key modules implemented so far:
 $ npm install
 ```
 
-⸻
+---
 
 ## 🚀 Compile and run the project
 
@@ -53,7 +53,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-⸻
+---
 
 ## 🧪 Run tests
 
@@ -68,7 +68,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-⸻
+---
 
 ## 📡 Endpoints implemented
 
@@ -120,7 +120,9 @@ Request body:
   "kitchenId": "bcf6a5b0-3ab0-4d8d-8f77-9a1b2c3d4e55"
 }
 ```
+
 Response:
+
 ```bash
 {
   "message": "Inventory updated",
@@ -129,7 +131,7 @@ Response:
 }
 ```
 
-⸻
+---
 
 ## 📦 Database (Prisma + PostgreSQL)
 
@@ -143,7 +145,7 @@ Response:
 - Fields: tenantId, kitchenId, productId, qty, lot, expiresAt
 - Composite unique: (tenantId, barcode)
 
-⸻
+---
 
 ## 🚀 Deployment
 
@@ -153,7 +155,7 @@ When deploying the Apptit API to production:
 - Use environment variables for DB connection and OFF integration
 - Run with a process manager (PM2, Docker, Kubernetes)
 
-⸻
+---
 
 ## 📚 Resources
 
@@ -161,13 +163,13 @@ When deploying the Apptit API to production:
 - Prisma Documentation
 - Open Food Facts API
 
-⸻
+---
 
 👤 Author
 
 - Rodrigo Paiva – GitHub · LinkedIn
 
-⸻
+---
 
 📄 License
 
