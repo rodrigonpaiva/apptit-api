@@ -1,7 +1,8 @@
 
 <p align="center">
   <a href="https://apptit.io" target="blank">
- <img style="max-width:400px;" src="https://previews.jumpshare.com/thumb/815bc01b796dd6f1733c957c5af19493367bedb244b33f008931a474dfac8d6f3e95bb639217e699707b7a59331f1a0080605dcab6e7ccad1e304e8a018401bb6128b5c7b8d34796378b19d348fbc76f"></a>
+    <img style="max-width:400px;" src="https://previews.jumpshare.com/thumb/815bc01b796dd6f1733c957c5af19493825ed196eea199123bc90f246bd017e1309cbe910374a8b450e01fe226695f6be853d26beb03ed6026933cda499e5312cd54493e3ecad05f9894464c11cfec98">
+  </a>
 </p>
 
 <p align="center">
@@ -24,6 +25,7 @@ Apptit API is the backend of the **Apptit project**, an intelligent system for c
 It integrates with **Open Food Facts (OFF)** to fetch product information, validates data with **Zod**, and manages stock through **Prisma + PostgreSQL**.
 
 Key modules implemented so far:
+
 - **Open Food Facts Integration** (lookup products by barcode)
 - **Inventory Management** (add products from OFF directly into stock)
 - **Validation & Logging** with NestJS global pipes and interceptors
@@ -38,7 +40,7 @@ $ npm install
 
 ⸻
 
-🚀 Compile and run the project
+## 🚀 Compile and run the project
 
 ```bash
 # development
@@ -53,7 +55,7 @@ $ npm run start:prod
 
 ⸻
 
-🧪 Run tests
+## 🧪 Run tests
 
 ```bash
 # unit tests
@@ -68,9 +70,9 @@ $ npm run test:cov
 
 ⸻
 
-📡 Endpoints implemented
+## 📡 Endpoints implemented
 
-🔍 Lookup Open Food Facts
+### 🔍 Lookup Open Food Facts
 
 ```bash
 GET /off/scan?barcode=5449000000996
@@ -97,7 +99,7 @@ Response:
 }
 ```
 
-📥 Add Product to Inventory
+### 📥 Add Product to Inventory
 
 ```bash
 POST /inventory/add-from-off
@@ -129,37 +131,41 @@ Response:
 
 ⸻
 
-📦 Database (Prisma + PostgreSQL)
-	•	Product
-	•	categories (mapped from DB column category using @map)
-	•	ecoScore (mapped from DB column greenScore if needed)
-	•	allergens (string)
-	•	optional allergensTags String[] @db.Text[]
-	•	InventoryItem (StockItem)
-	•	Linked to Product
-	•	Fields: tenantId, kitchenId, productId, qty, lot, expiresAt
-	•	Composite unique: (tenantId, barcode)
+## 📦 Database (Prisma + PostgreSQL)
+
+- Product
+- categories (mapped from DB column category using @map)
+- ecoScore (mapped from DB column greenScore if needed)
+- allergens (string)
+- Optional allergensTags String[] @db.Text[]
+- InventoryItem (StockItem)
+- Linked to Product
+- Fields: tenantId, kitchenId, productId, qty, lot, expiresAt
+- Composite unique: (tenantId, barcode)
 
 ⸻
 
-🚀 Deployment
+## 🚀 Deployment
 
 When deploying the Apptit API to production:
-	•	Ensure migrations are applied: npx prisma migrate deploy
-	•	Use environment variables for DB connection and OFF integration
-	•	Run with a process manager (PM2, Docker, Kubernetes)
+
+- Ensure migrations are applied: npx prisma migrate deploy
+- Use environment variables for DB connection and OFF integration
+- Run with a process manager (PM2, Docker, Kubernetes)
 
 ⸻
 
-📚 Resources
-	•	NestJS Documentation
-	•	Prisma Documentation
-	•	Open Food Facts API
+## 📚 Resources
+
+- NestJS Documentation
+- Prisma Documentation
+- Open Food Facts API
 
 ⸻
 
 👤 Author
-	•	Rodrigo Paiva – GitHub · LinkedIn
+
+- Rodrigo Paiva – GitHub · LinkedIn
 
 ⸻
 
