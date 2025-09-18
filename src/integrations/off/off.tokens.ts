@@ -1,0 +1,1 @@
+export const OFF_RESOLVED_CONFIG = Symbol('OFF_RESOLVED_CONFIG');

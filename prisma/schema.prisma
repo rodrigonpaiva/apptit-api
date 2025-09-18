@@ -1,0 +1,169 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  CHEF
+  MANAGER
+  STAFF
+}
+
+model Tenant {
+  id        String   @id @default(cuid())
+  name      String
+  locale    String   @default("fr-FR")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sites          Site[]
+  users          User[]
+  suppliers      Supplier[]
+  products       Product[]
+  stockItems     StockItem[]
+  purchaseOrders PurchaseOrder[]
+  haccpLogs      HaccpLog[]
+}
+
+model Site {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  name      String
+  code      String
+  address   String?
+  createdAt DateTime @default(now())
+
+  stokItems      StockItem[]
+  purchaseOrders PurchaseOrder[]
+  haccpLogs      HaccpLog[]
+
+  @@unique([tenantId, code])
+}
+
+model User {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  email     String
+  password  String
+  role      Role
+  name      String?
+  avatar    String?
+  createdAt DateTime @default(now())
+
+  refreshTokenHash String?
+
+  @@unique([tenantId, email])
+}
+
+model Supplier {
+  id       String  @id @default(cuid())
+  tenantId String
+  tenant   Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  name     String
+  siret    String?
+  contact  String?
+  email    String?
+  phone    String?
+
+  purchaseOrders PurchaseOrder[]
+
+  @@unique([tenantId, name])
+}
+
+model Product {
+  id         String  @id @default(uuid()) @db.Uuid
+  tenantId   String  @db.Uuid
+  barcode    String
+  name       String
+  brand      String?
+  categories String? @map("category") // ex.: "Beverages,Soft drinks,Coffees"
+  imageUrl   String?
+
+  quantity    String? // ex.: "1 L", "330 ml"
+  packaging   String?
+  ingredients String?
+  nutriments  Json? // ← JSONB com macros/micros da OFF
+  nutriScore  String?
+  ecoScore    String? @map("greenScore")
+  allergens   String?
+
+  unit String @default("unit")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  stocks            StockItem[]
+  PurchaseOrderLine PurchaseOrderLine[]
+  Tenant            Tenant              @relation(fields: [tenantId], references: [id])
+
+  @@unique([tenantId, barcode])
+  @@index([tenantId, name])
+}
+
+model StockItem {
+  id        String  @id @default(cuid())
+  tenantId  String
+  tenant    Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  siteId    String
+  site      Site    @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  lot       String?
+  qty       Decimal   @db.Decimal(14, 3)
+  unitCost  Decimal?  @db.Decimal(14, 4)
+  expiresAt DateTime?
+  updatedAt DateTime  @updatedAt
+
+  @@index([tenantId, siteId, productId])
+}
+
+model PurchaseOrder {
+  id         String              @id @default(cuid())
+  tenantId   String
+  tenant     Tenant              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  supplierId String
+  supplier   Supplier            @relation(fields: [supplierId], references: [id], onDelete: Restrict)
+  siteId     String
+  site       Site                @relation(fields: [siteId], references: [id], onDelete: Restrict)
+  status     String              @default("DRAFT") // DRAFT, SENT, RECEIVED, CANCELLED
+  createdAt  DateTime            @default(now())
+  lines      PurchaseOrderLine[]
+}
+
+model PurchaseOrderLine {
+  id         String        @id @default(cuid())
+  purchaseId String
+  purchase   PurchaseOrder @relation(fields: [purchaseId], references: [id], onDelete: Cascade)
+  productId  String
+  product    Product       @relation(fields: [productId], references: [id], onDelete: Restrict)
+  qty        Decimal       @db.Decimal(14, 3)
+  unitPrice  Decimal       @db.Decimal(14, 4)
+}
+
+model HaccpLog {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  siteId    String
+  site      Site     @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  type      String // e.g., "TEMP_CHECK", "CLEANING", "NON_CONFORMITY"
+  payload   Json
+  createdBy String
+  createdAt DateTime @default(now())
+
+  @@index([tenantId, siteId, type, createdAt])
+}
